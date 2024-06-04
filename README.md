@@ -137,7 +137,14 @@ use ArberMustafa\FilamentLocationPickrField\Forms\Components\LocationPickr;
             ->draggable()
             ->clickable()
             ->height('40vh')
-            ->defaultLocation([41.32836109345274, 19.818383186960773])
+            ->defaultLocation([30, 10])
+            ->groundOverlayUrl('https://example.com/map.jpg')
+            ->groundOverlayBounds([
+                'north' => 30.499199,
+                'south' => 30.499100,
+                'west' => 10.159400,
+                'east' => 10.159499,
+                    ])
             ->myLocationButtonLabel('My location'),
         ....
     ]);
