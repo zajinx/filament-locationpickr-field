@@ -27,6 +27,13 @@ export default function locationPickrField({ location, config }) {
             },
             apiKey: '',
             statePath: '',
+            groundOverlayUrl: '', // URL of the ground overlay image
+            groundOverlayBounds: { // Bounds of the ground overlay
+                north: 0,
+                south: 0,
+                west: 0,
+                east: 0,
+            },
         },
 
         init: function () {
@@ -82,6 +89,18 @@ export default function locationPickrField({ location, config }) {
                     this.map.controls[
                         google.maps.ControlPosition.TOP_LEFT
                     ].push(locationButtonDiv)
+                    // Add ground overlay
+                    const bounds = {
+                        north: this.config.groundOverlayBounds.north,
+                        south: this.config.groundOverlayBounds.south,
+                        west: this.config.groundOverlayBounds.west,
+                        east: this.config.groundOverlayBounds.east,
+                    }
+                    this.groundOverlay = new google.maps.GroundOverlay(
+                        this.config.groundOverlayUrl,
+                        bounds
+                    )
+                    this.groundOverlay.setMap(this.map)
                 })
                 .catch((error) => {
                     console.error('Error loading Google Maps API:', error)
